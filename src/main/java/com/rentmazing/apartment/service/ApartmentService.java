@@ -1,5 +1,6 @@
 package com.rentmazing.apartment.service;
 
+import com.rentmazing.apartment.controller.ClientRequest;
 import com.rentmazing.apartment.entity.Client;
 import com.rentmazing.apartment.entity.ClientApartment;
 import com.rentmazing.apartment.repository.ClientApartmentRepository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -62,5 +64,37 @@ public class ApartmentService {
         }
 
         return clientApartmentRepository.findAll(specification);
+    }
+
+    public UUID createClient(ClientRequest clientRequest) {
+        var clientEntity = new Client();
+
+        clientEntity.setEmail(clientRequest.getEmail());
+        clientEntity.setPhone(clientRequest.getPhone());
+        clientEntity.setFullName(clientRequest.getFullName());
+
+        if (clientRequest.getApartments() != null) {
+                var clientApartmentEntities = new ArrayList<ClientApartment>();
+
+                for (var apartmentRequest : clientRequest.getApartments()) {
+                    var apartmentEntity = new ClientApartment();
+
+                    apartmentEntity.setIsAvailableForRent(apartmentRequest.getIsAvailableForRent());
+                    apartmentEntity.setBuildingName(apartmentRequest.getBuildingName());
+                    apartmentEntity.setCity(apartmentRequest.getCity());
+                    apartmentEntity.setDescription(apartmentRequest.getDescription());
+                    apartmentEntity.setPostalCode(apartmentRequest.getPostalCode());
+                    apartmentEntity.setRentPrice(apartmentRequest.getRentPrice());
+                    apartmentEntity.setStreetAddress(apartmentRequest.getStreetAddress());
+
+                    clientApartmentEntities.add(apartmentEntity);
+                }
+
+                clientEntity.setApartments(clientApartmentEntities);
+
+        }
+
+        return clientRepository.save(clientEntity).getClientId();
+
     }
 }

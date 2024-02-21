@@ -1,20 +1,6 @@
-package com.rentmazing.apartment.entity;
+package com.rentmazing.apartment.controller;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-import java.util.UUID;
-
-@Entity
-@Table(name = "client_apartments")
-public class ClientApartment {
-
-    @Id
-    @GeneratedValue
-    private UUID apartmentId;
-
+public class ClientApartmentRequest {
     private String description;
     private String buildingName;
     private String streetAddress;
@@ -22,14 +8,6 @@ public class ClientApartment {
     private String postalCode;
     private boolean isAvailableForRent;
     private int rentPrice;
-
-    public UUID getApartmentId() {
-        return apartmentId;
-    }
-
-    public void setApartmentId(UUID apartmentId) {
-        this.apartmentId = apartmentId;
-    }
 
     public String getDescription() {
         return description;
@@ -75,8 +53,8 @@ public class ClientApartment {
         return isAvailableForRent;
     }
 
-    public void setIsAvailableForRent(boolean isAvailableForRent) {
-        this.isAvailableForRent = isAvailableForRent;
+    public void setIsAvailableForRent(boolean availableForRent) {
+        isAvailableForRent = availableForRent;
     }
 
     public int getRentPrice() {

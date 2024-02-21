@@ -1,33 +1,14 @@
-package com.rentmazing.apartment.entity;
-
-import jakarta.persistence.*;
+package com.rentmazing.apartment.controller;
 
 import java.util.List;
-import java.util.UUID;
 
-@Table(name = "clients")
-@Entity
-public class Client {
-
-    @Id
-    @GeneratedValue
-    private UUID clientId;
+public class ClientRequest {
 
     private String fullName;
     private String email;
     private String phone;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "client_id")
-    private List<ClientApartment> apartments;
-
-    public UUID getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(UUID clientId) {
-        this.clientId = clientId;
-    }
+    private List<ClientApartmentRequest> apartments;
 
     public String getFullName() {
         return fullName;
@@ -53,11 +34,11 @@ public class Client {
         this.phone = phone;
     }
 
-    public List<ClientApartment> getApartments() {
+    public List<ClientApartmentRequest> getApartments() {
         return apartments;
     }
 
-    public void setApartments(List<ClientApartment> apartments) {
+    public void setApartments(List<ClientApartmentRequest> apartments) {
         this.apartments = apartments;
     }
 }

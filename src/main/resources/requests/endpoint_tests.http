@@ -21,3 +21,30 @@ GET http://localhost:8080/api/apartments?minPrice=300000&maxPrice=400000
 
 ###
 GET http://localhost:8080/api/apartments?minPrice=300000&maxPrice=400000&isAvailableForRent=false
+
+###
+POST http://localhost:8080/api/client
+Content-Type: application/json
+
+{
+  "fullName": "Diana Prince",
+  "email": "diana.prince@mail.com",
+  "phone": "777-7777",
+  "apartments": [
+    {
+      "description": "Diana Prince building 1",
+      "buildingName": "Athens Temple",
+      "streetAddress": "Athens Ancient Street 7",
+      "city": "Athens",
+      "postalCode": "777111",
+      "rentPrice": 399861,
+      "isAvailableForRent": false
+    }
+  ]
+}
+
+###
+GET http://localhost:8080/api/apartments?isAvailableForRent=false
+
+###
+GET http://localhost:8080/api/apartments?minPrice=300000&maxPrice=400000

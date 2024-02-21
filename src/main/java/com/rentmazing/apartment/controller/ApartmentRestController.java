@@ -4,10 +4,7 @@ import com.rentmazing.apartment.entity.Client;
 import com.rentmazing.apartment.entity.ClientApartment;
 import com.rentmazing.apartment.service.ApartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -43,4 +40,8 @@ public class ApartmentRestController {
         return apartmentService.findApartments(city, minPrice, maxPrice, isAvailableForRent);
     }
 
+    @PostMapping(value = "/api/client")
+    String createClient(@RequestBody ClientRequest clientRequest) {
+        return apartmentService.createClient(clientRequest).toString();
+    }
 }
