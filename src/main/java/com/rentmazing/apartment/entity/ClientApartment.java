@@ -17,7 +17,7 @@ public class ClientApartment {
     private String streetAddress;
     private String city;
     private String postalCode;
-    private String isAvailableForRent;
+    private boolean isAvailableForRent;
     private int rentPrice;
 
     public UUID getApartmentId() {
@@ -68,11 +68,11 @@ public class ClientApartment {
         this.postalCode = postalCode;
     }
 
-    public String getIsAvailableForRent() {
+    public boolean getIsAvailableForRent() {
         return isAvailableForRent;
     }
 
-    public void setIsAvailableForRent(String isAvailableForRent) {
+    public void setIsAvailableForRent(boolean isAvailableForRent) {
         this.isAvailableForRent = isAvailableForRent;
     }
 

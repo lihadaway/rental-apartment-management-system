@@ -5,4 +5,19 @@ GET http://localhost:8080/hello
 GET http://localhost:8080/api/clients
 
 ###
+GET http://localhost:8080/api/clients/87009ba1-6da0-431a-8ff9-73182d506e6d
+
+###
 GET http://localhost:8080/api/apartments
+
+###
+GET http://localhost:8080/api/apartments?city=gotham
+
+###
+GET http://localhost:8080/api/apartments?city=mEtRO
+
+###
+GET http://localhost:8080/api/apartments?minPrice=300000&maxPrice=400000
+
+###
+GET http://localhost:8080/api/apartments?minPrice=300000&maxPrice=400000&isAvailableForRent=false

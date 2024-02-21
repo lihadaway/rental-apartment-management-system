@@ -5,6 +5,8 @@ import com.rentmazing.apartment.entity.ClientApartment;
 import com.rentmazing.apartment.service.ApartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -24,14 +26,21 @@ public class ApartmentRestController {
         return "It works!";
     }
 
-    @GetMapping(value = "/api/clients")
-    List<Client> getAllClients() {
-        return apartmentService.getAllClients();
+    @GetMapping(value = {"/api/clients", "/api/clients/{optionalClientId}"})
+    List<Client> getAllClients(
+            @PathVariable(required = false, name = "optionalClientId") String optionalClientId
+    ) {
+        return apartmentService.findClients(optionalClientId);
     }
 
     @GetMapping(value = "/api/apartments")
-    List<ClientApartment> getAllApartments() {
-        return apartmentService.getAllClientsApartments();
+    List<ClientApartment> getAllApartments(
+            @RequestParam(required = false, name = "city") String city,
+            @RequestParam(required = false, name = "minPrice") Integer minPrice,
+            @RequestParam(required = false, name = "maxPrice") Integer maxPrice,
+            @RequestParam(required = false, name = "isAvailableForRent") Boolean isAvailableForRent
+    ) {
+        return apartmentService.findApartments(city, minPrice, maxPrice, isAvailableForRent);
     }
 
 }
